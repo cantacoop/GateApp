@@ -62,28 +62,28 @@ public class Logic
         // code) based on the chosen drop down selection: 'Corral' or
         // 'Herd'.
         switch (classToTest) {
-        case Corral:
-            // We're going to test the FillTheCorral class on this
-            // run.
-            final FillTheCorral mFillTheCorral =
-                new FillTheCorral(mOut);
-
-            final Gate[] corral =
-                new Gate[sMAX_GATES];
-
-            for (int i = 0; i < corral.length; i++)
-                corral[i] = new Gate();
-
-            do {
-                // Randomly set the direction of each gate's swing in
-                // the corral array.
-                mFillTheCorral.setCorralGates(corral,
-                                              randomNumber);
-            } while (!mFillTheCorral.anyCorralAvailable(corral));
-
-            // Corral all the snails.
-            mFillTheCorral.corralSnails(corral, randomNumber);
-            break;
+//        case Corral:
+//            // We're going to test the FillTheCorral class on this
+//            // run.
+//            final FillTheCorral mFillTheCorral =
+//                new FillTheCorral(mOut);
+//
+//            final Gate[] corral =
+//                new Gate[sMAX_GATES];
+//
+//            for (int i = 0; i < corral.length; i++)
+//                corral[i] = new Gate();
+//
+//            do {
+//                // Randomly set the direction of each gate's swing in
+//                // the corral array.
+//                mFillTheCorral.setCorralGates(corral,
+//                                              randomNumber);
+//            } while (!mFillTheCorral.anyCorralAvailable(corral));
+//
+//            // Corral all the snails.
+//            mFillTheCorral.corralSnails(corral, randomNumber);
+//            break;
 
         case Herd:
             // We're going to test the HerdManager class on this run.
