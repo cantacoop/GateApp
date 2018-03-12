@@ -1,6 +1,9 @@
 package mooc.vandy.java4android.gate.logic.tools;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 
+import mooc.vandy.java4android.gate.logic.ClassToTest;
 import mooc.vandy.java4android.gate.ui.OutputInterface;
 
 /**
@@ -9,9 +12,18 @@ import mooc.vandy.java4android.gate.ui.OutputInterface;
  * This class exists to assist in the auto-grading framework that we have developed.
  * Knowledge of this class and how it works will not be required in this course at all.
  */
-public class TestingOutputInterface  implements OutputInterface {
+public class TestingOutputInterface implements OutputInterface {
 
     String output = "";
+
+    public String getOutput(){
+        return output;
+    }
+
+    @Override
+    public ClassToTest getClassToTest() {
+        return null;
+    }
 
     @Override
     public void print(String text) {

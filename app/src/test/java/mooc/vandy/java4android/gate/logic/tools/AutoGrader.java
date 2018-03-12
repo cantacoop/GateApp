@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.io.File;
 
-import mooc.vandy.java4android.gate.logic.GateUnitTests;
+import mooc.vandy.java4android.gate.logic.AllUnitTests;
 
 /**
  * IGNORE THIS CLASS.
@@ -15,15 +15,13 @@ import mooc.vandy.java4android.gate.logic.GateUnitTests;
  * Knowledge of this class and how it works will not be required in this course at all.
  */
 public class AutoGrader {
-
     @Test
     public void mainTest(){
         try {
             AndroidHandinUtil.generateHandinPackage("Asgn2", new File("./build/results.txt"),
-                    GateUnitTests.class);
+                    AllUnitTests.class);
         }catch(Exception e){
             Log.d("AutoGrader :", e.getMessage());
         }
-
     }
 }

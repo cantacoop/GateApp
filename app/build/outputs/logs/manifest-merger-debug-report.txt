@@ -2,7 +2,7 @@
 manifest
 ADDED from C:\Users\mrzephyr9\AndroidStudioProjects\GateApp\app\src\main\AndroidManifest.xml:2:1-20:12
 	package
-		ADDED from C:\Users\mrzephyr9\AndroidStudioProjects\GateApp\app\src\main\AndroidManifest.xml:3:5-43
+		ADDED from C:\Users\mrzephyr9\AndroidStudioProjects\GateApp\app\src\main\AndroidManifest.xml:3:5-49
 		INJECTED from C:\Users\mrzephyr9\AndroidStudioProjects\GateApp\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\mrzephyr9\AndroidStudioProjects\GateApp\app\src\main\AndroidManifest.xml
 	android:versionName

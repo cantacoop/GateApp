@@ -4,24 +4,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
-import mooc.vandy.java4android.gate.R;
-
+import mooc.vandy.java4android.gate.logic.ClassToTest;
+import mooc.vandy.java4android.gate.logic.R;
 import mooc.vandy.java4android.gate.logic.Logic;
 import mooc.vandy.java4android.gate.logic.LogicInterface;
 
 /**
- * Main UI for the App.
+ * Main UI of this app.
  */
-public class MainActivity
+public class MainActivity 
        extends AppCompatActivity 
        implements OutputInterface {
     /**
-     * String for LOGGING.
+     * String for LOGGING
      */
-    private final static String LOG_TAG =
+    public final static String LOG_TAG =
         MainActivity.class.getCanonicalName();
 
     /**
@@ -40,6 +42,18 @@ public class MainActivity
     private Button mProcessButton;
 
     /**
+     * The Spinner (drop down selector) that you choose which
+     * shape to use.
+     */
+    private Spinner mShapesSpinner;
+
+    /**
+     * This 'Adapts' the Array of CharSequence to make it useable by
+     * the mShapesSpinner.
+     */
+    private ArrayAdapter<CharSequence> mAdapter;
+
+    /**
      * Called when the activity is starting.
      *
      * Similar to 'main' in C/C++/Standalone Java
@@ -50,7 +64,7 @@ public class MainActivity
         // required
         super.onCreate(savedInstanceState);
 
-        // create a new 'Logic' instance.
+        // Create a new 'Logic' instance.
         mLogic = new Logic(this);
 
         // setup the UI.
@@ -58,7 +72,7 @@ public class MainActivity
     }
 
     /**
-     * This method sets up/gets reference to the UI components.
+     * This method sets up/gets reference to the UI components
      */
     private void initializeUI(){
         // Set the layout.
@@ -67,6 +81,19 @@ public class MainActivity
         // Initialize the views.
         mOutput = (EditText) findViewById(R.id.outputET);
         mProcessButton = (Button) findViewById(R.id.button);
+        mShapesSpinner = (Spinner) findViewById(R.id.spinner);
+
+        // Initialize the adapter.
+        mAdapter =
+            ArrayAdapter.createFromResource
+            (this,
+             R.array.shapes,
+             android.R.layout.simple_spinner_item);
+        mAdapter.setDropDownViewResource
+            (android.R.layout.simple_spinner_dropdown_item);
+
+        // Connect the adapter to the Spinner.
+        mShapesSpinner.setAdapter(mAdapter);
     }
 
     /**
@@ -80,10 +107,22 @@ public class MainActivity
     }
 
     /**
-     * Add @a string to the EditText.
+     * Set the EditText's text.
      */
     private void addToEditText(String string){
         mOutput.setText("" + mOutput.getText() + string);
+    }
+
+    /**
+     * Return the enumeration literal for the class to test.
+     */
+    @Override
+    public ClassToTest getClassToTest() {
+        // valueOf(String) is an automatically generated method of all
+        // Enum(s).  It returns an instance of the enum if one matches
+        // the string provided.
+        return ClassToTest.valueOf
+            (mShapesSpinner.getSelectedItem().toString());
     }
 
     /**
@@ -133,8 +172,7 @@ public class MainActivity
     }
 
     /**
-     * Allow Logic to print Log statements without requiring
-     * dependency.
+     * Allow log messages from Logic.
      */
     @Override
     public void log(String logtext) {

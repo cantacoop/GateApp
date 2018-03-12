@@ -11,7 +11,7 @@ package mooc.vandy.java4android.gate.logic;
  * 'LogicInterface' variable (mLogic inside [MainActivity.java])
  */
 public interface LogicInterface {
-    /**
+     /**
      * This method gets called (indirectly via [MainActivity.java])
      * when the button labeled 'Process...' is pressed.
      */

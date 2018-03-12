@@ -1,10 +1,17 @@
 package mooc.vandy.java4android.gate.ui;
 
+import mooc.vandy.java4android.gate.logic.ClassToTest;
+
 /**
- * Interface that defines the methods that the User Interface
+ * Interface defines the methods that the User Interface
  * [MainActivity] will implement.
  */
 public interface OutputInterface {
+    /**
+     * Return the enumeration literal for the class to test.
+     */
+    ClassToTest getClassToTest();
+
     /**
      * This prints to the output a string.
      * @param text
@@ -35,8 +42,7 @@ public interface OutputInterface {
     void resetText();
 
     /**
-     * Allow Logic to print Log statements without requiring
-     * dependency.
+     * Allow log messages from Logic.
      */
     void log(String logtext);
 }
