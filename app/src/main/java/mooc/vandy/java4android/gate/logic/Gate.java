@@ -9,6 +9,8 @@ public class Gate {
     public static final int OUT = -1;
     public static final int CLOSED = 0;
 
+    private int snails;
+
     // gate direction
     private int mSwing;
 
@@ -77,8 +79,10 @@ public class Gate {
     public int thru(int count) {
 
         if (getSwingDirection() == IN) {
+            snails++;
             return count;
         } else if (getSwingDirection() == OUT) {
+            snails--;
             return -count;
         } else {
             return 0;
@@ -106,5 +110,9 @@ public class Gate {
                 // a gate that has a swing value other than IN, OUT, or CLOSED
                 return "This gate has an invalid swing direction";
         }
+    }
+
+    public int getSnails() {
+        return snails;
     }
 }

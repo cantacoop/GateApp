@@ -77,8 +77,7 @@ public class Logic
             do {
                 // Randomly set the direction of each gate's swing in
                 // the corral array.
-                mFillTheCorral.setCorralGates(corral,
-                                              randomNumber);
+                mFillTheCorral.setCorralGates(corral, randomNumber);
             } while (!mFillTheCorral.anyCorralAvailable(corral));
 
             // Corral all the snails.

@@ -61,9 +61,6 @@ public class HerdManager {
         // initial number of snail in pasture
         int pasture = HERD - pen;
 
-        // set seed value for the random method
-        rand.setSeed(1234);
-
         // display configuration status
         displayResult(pen);
 
