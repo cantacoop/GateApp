@@ -28,7 +28,7 @@ public class HerdManager {
     /**
      * Maximum number of iterations to run the simulation.
      */
-    private static final int MAX_ITERATIONS = 20;
+    private static final int MAX_ITERATIONS = 10;
 
     public static final int HERD = 24;
 
@@ -40,42 +40,64 @@ public class HerdManager {
                        Gate eastGate) {
         mOut = out;
 
+        // initial west gate swing
         mWestGate = westGate;
         mWestGate.open(Gate.IN);
 
+        // initial east gate swing
         mEastGate = eastGate;
         mEastGate.open(Gate.OUT);
     }
 
+    /**
+     * Simulation snail into or out to the pen
+     * @param rand random object
+     */
     public void simulateHerd(Random rand) {
 
-        int snailInPen = HERD;
-        int snailInPasture = 0;
+        // initial number of snail in pen
+        int pen = HERD;
+
+        // initial number of snail in pasture
+        int pasture = HERD - pen;
 
         // set seed value for the random method
-        rand.setSeed(24);
+        rand.setSeed(1234);
 
+        // display configuration status
+        displayResult(pen);
+
+        // simulation with maximum iterations
         for (int i = 0; i < MAX_ITERATIONS; i++) {
 
-            if (snailInPen == 0) {
-                break;
+            if (pen == 0) { // check snail in pen is empty
+                // randomly snail into pen
+                pen += mWestGate.thru(rand.nextInt(pasture) + 1);
+            } else if (pasture == 0) { // check snail in paster is empty
+                // randomly snail into pasture
+                pen += mEastGate.thru(rand.nextInt(pen) + 1);
+            } else if (rand.nextBoolean()) { // randomly select gate
+                // randomly snail into pasture
+                pen += mEastGate.thru(rand.nextInt(pen) + 1);
+            } else {
+                // randomly snail into pen
+                pen += mWestGate.thru(rand.nextInt(pasture) + 1);
             }
 
-            // randomly select a gate
-            if (rand.nextBoolean()) { // West Gate
-                snailInPen += mWestGate.thru(rand.nextInt(snailInPasture + 1));
-            } else { // East Gate
-                snailInPen += mEastGate.thru(rand.nextInt(snailInPen + 1));
-            }
+            // update snail in the pasture
+            pasture = HERD - pen;
 
-            snailInPasture = HERD - snailInPen;
-
-            displayResult(snailInPen);
+            // display status result
+            displayResult(pen);
         }
     }
 
-    public void displayResult(int snailInPen) {
-        mOut.println("There currently " + snailInPen + " snails in the pen and " +
-                (HERD - snailInPen) + " snails in the pasture");
+    /**
+     * Display result status
+     * @param pen snails in the pen
+     */
+    public void displayResult(int pen) {
+        mOut.println("There are currently " + pen + " snails in the pen and " +
+                (HERD - pen) + " snails in the pasture");
     }
 }
