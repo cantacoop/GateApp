@@ -54,10 +54,10 @@ public class FillTheCorral {
     }
 
     /**
-     *
-     * @param corral
-     * @param rand
-     * @return
+     * Simulate corral snail
+     * @param corral gate
+     * @param rand random object
+     * @return attempts
      */
     public int corralSnails(Gate[] corral, Random rand) {
 
